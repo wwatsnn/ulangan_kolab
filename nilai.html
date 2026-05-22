@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Nilai - Rancangan Ulangan Kolaborasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .nilai-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .nilai-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .nilai-item:hover {
+            transform: translateX(5px);
+        }
+
+        .nama {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nama::before {
+            content: "👤";
+            font-size: 20px;
+        }
+
+        .input-nilai {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .input-nilai label {
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .input-nilai input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-nilai input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .nilai-tampil {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-simpan {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .btn-kembali {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f0fe;
+            border-radius: 10px;
+            color: #4a5568;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Daftar Nilai</h1>
+        <div class="subtitle">Input dan Kelola Nilai Ulangan Kolaborasi</div>
+        
+        <div class="nilai-card">
+            <div class="nilai-item">
+                <div class="nama">Kantata Rayya Tiranisa</div>
+                <div class="input-nilai">
+                    <label>Nilai:</label>
+                    <input type="number" id="nilaiKantata" placeholder="Masukkan nilai (0-100)" min="0" max="100" step="0.01">
+                </div>
+                <div class="nilai-tampil" id="tampilKantata">Belum diisi</div>
+            </div>
+
+            <div class="nilai-item">
+                <div class="nama">Ivana Almira Aminto</div>
+                <div class="input-nilai">
+                    <label>Nilai:</label>
+                    <input type="number" id="nilaiIvana" placeholder="Masukkan nilai (0-100)" min="0" max="100" step="0.01">
+                </div>
+                <div class="nilai-tampil" id="tampilIvana">Belum diisi</div>
+            </div>
+
+            <div class="nilai-item">
+                <div class="nama">Rana Kusuma Jati</div>
+                <div class="input-nilai">
+                    <label>Nilai:</label>
+                    <input type="number" id="nilaiRana" placeholder="Masukkan nilai (0-100)" min="0" max="100" step="0.01">
+                </div>
+                <div class="nilai-tampil" id="tampilRana">Belum diisi</div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-simpan" onclick="simpanNilai()">💾 Simpan Nilai</button>
+            <button class="btn btn-reset" onclick="resetNilai()">🔄 Reset</button>
+            <button class="btn btn-kembali" onclick="window.location.href='beranda.html'">🏠 Kembali ke Beranda</button>
+        </div>
+
+        <div class="info" id="infoMessage"></div>
+    </div>
+
+    <script>
+        // Load data dari localStorage saat halaman dimuat
+        window.onload = function() {
+            loadNilai();
+        }
+
+        function simpanNilai() {
+            // Ambil nilai dari input
+            let nilaiKantata = document.getElementById('nilaiKantata').value;
+            let nilaiIvana = document.getElementById('nilaiIvana').value;
+            let nilaiRana = document.getElementById('nilaiRana').value;
+
+            // Validasi
+            let error = false;
+            let errorMessage = '';
+
+            if (nilaiKantata !== '' && (nilaiKantata < 0 || nilaiKantata > 100)) {
+                error = true;
+                errorMessage += 'Nilai Kantata harus antara 0-100. ';
+            }
+            if (nilaiIvana !== '' && (nilaiIvana < 0 || nilaiIvana > 100)) {
+                error = true;
+                errorMessage += 'Nilai Ivana harus antara 0-100. ';
+            }
+            if (nilaiRana !== '' && (nilaiRana < 0 || nilaiRana > 100)) {
+                error = true;
+                errorMessage += 'Nilai Rana harus antara 0-100. ';
+            }
+
+            if (error) {
+                document.getElementById('infoMessage').innerHTML = '⚠️ ' + errorMessage;
+                document.getElementById('infoMessage').style.background = '#fee';
+                document.getElementById('infoMessage').style.color = '#c00';
+                setTimeout(() => {
+                    document.getElementById('infoMessage').innerHTML = '';
+                }, 3000);
+                return;
+            }
+
+            // Simpan ke localStorage
+            const dataNilai = {
+                kantata: nilaiKantata || '',
+                ivana: nilaiIvana || '',
+                rana: nilaiRana || ''
+            };
+            localStorage.setItem('dataNilai', JSON.stringify(dataNilai));
+
+            // Tampilkan nilai yang disimpan
+            updateTampilan();
+
+            // Tampilkan pesan sukses
+            document.getElementById('infoMessage').innerHTML = '✅ Nilai berhasil disimpan!';
+            document.getElementById('infoMessage').style.background = '#d4edda';
+            document.getElementById('infoMessage').style.color = '#155724';
+            setTimeout(() => {
+                document.getElementById('infoMessage').innerHTML = '';
+            }, 2000);
+        }
+
+        function loadNilai() {
+            const savedData = localStorage.getItem('dataNilai');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('nilaiKantata').value = data.kantata;
+                document.getElementById('nilaiIvana').value = data.ivana;
+                document.getElementById('nilaiRana').value = data.rana;
+                updateTampilan();
+            }
+        }
+
+        function updateTampilan() {
+            const nilaiKantata = document.getElementById('nilaiKantata').value;
+            const nilaiIvana = document.getElementById('nilaiIvana').value;
+            const nilaiRana = document.getElementById('nilaiRana').value;
+
+            document.getElementById('tampilKantata').innerHTML = nilaiKantata ? `📌 Nilai tersimpan: ${nilaiKantata}` : 'Belum diisi';
+            document.getElementById('tampilIvana').innerHTML = nilaiIvana ? `📌 Nilai tersimpan: ${nilaiIvana}` : 'Belum diisi';
+            document.getElementById('tampilRana').innerHTML = nilaiRana ? `📌 Nilai tersimpan: ${nilaiRana}` : 'Belum diisi';
+        }
+
+        function resetNilai() {
+            if (confirm('Yakin ingin mereset semua nilai?')) {
+                document.getElementById('nilaiKantata').value = '';
+                document.getElementById('nilaiIvana').value = '';
+                document.getElementById('nilaiRana').value = '';
+                localStorage.removeItem('dataNilai');
+                updateTampilan();
+                
+                document.getElementById('infoMessage').innerHTML = '🔄 Semua nilai telah direset!';
+                document.getElementById('infoMessage').style.background = '#fff3cd';
+                document.getElementById('infoMessage').style.color = '#856404';
+                setTimeout(() => {
+                    document.getElementById('infoMessage').innerHTML = '';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
