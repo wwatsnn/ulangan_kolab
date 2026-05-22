@@ -9,3 +9,19 @@ Teks yang ditampilkan:
 Tombol: "Lihat Halaman Nilai"
 
 Halaman ini menampilkan judul proyek dan dua nama anggota kelompok. Terdapat satu tombol untuk berpindah ke halaman nilai.
+
+Halaman Nilai
+
+Daftar Nilai
+
+Teks yang ditampilkan:
+- Kantata Rayya Tiranisa : (kolom input nilai)
+- Ivana Almira Aminto : (kolom input nilai)
+- Rana Kusuma Jati : (kolom input nilai)
+
+Tombol:
+- Simpan
+- Reset
+- Kembali ke Beranda
+
+Halaman ini menampilkan tiga nama siswa beserta kolom input untuk mengisi nilai. Pengguna dapat menyimpan, mereset, atau kembali ke halaman beranda.
